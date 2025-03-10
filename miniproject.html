@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://via.placeholder.com/1500');
+            background-size: cover;
+            background-position: center;
+            margin-top: 50px;
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Signup Form</h2>
+
+        <form id="signupForm" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" placeholder="Enter first name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" placeholder="Enter last name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" required>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="text" id="age" placeholder="Enter age" required>
+            </div>
+
+            <div class="form-group">
+                <label>Gender:</label><br>
+                <input type="radio" name="gender" value="Male" id="male"> Male
+                <input type="radio" name="gender" value="Female" id="female"> Female
+            </div>
+
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="text" id="phoneNumber" placeholder="Enter phone number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" placeholder="Enter your address" required></textarea>
+            </div>
+
+            <button type="submit">Signup</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const dob = document.getElementById('dob').value;
+            const age = document.getElementById('age').value;
+            const gender = document.querySelector('input[name="gender"]:checked');
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const address = document.getElementById('address').value;
+
+            if (!/^[a-zA-Z]{4,}$/.test(firstName)) {
+                alert('First name should contain only alphabets and be at least 4 characters long.');
+                return false;
+            }
+
+            if (!/^[a-zA-Z]+$/.test(lastName)) {
+                alert('Last name should contain only alphabets.');
+                return false;
+            }
+
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email.');
+                return false;
+            }
+
+            if (!dob) {
+                alert('Please enter a valid date of birth.');
+                return false;
+            }
+
+            if (!/^\d{2}$/.test(age)) {
+                alert('Please enter a valid age (two digits).');
+                return false;
+            }
+
+            if (!gender) {
+                alert('Please select a gender.');
+                return false;
+            }
+
+            if (!/^\d{10}$/.test(phoneNumber)) {
+                alert('Phone number should be exactly 10 digits.');
+                return false;
+            }
+
+            if (address.trim() === '') {
+                alert('Address should not be empty.');
+                return false;
+            }
+
+            // Redirect to success.html with query parameters
+            const params = new URLSearchParams({
+                firstName,
+                lastName,
+                email,
+                dob,
+                age,
+                gender: gender.value,
+                phoneNumber,
+                address
+            }).toString();
+
+            window.location.href = `success.html?${params}`;
+
+            return false; // Prevent form from submitting normally
+        }
+    </script>
+</body>
+</html>

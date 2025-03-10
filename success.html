@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin-top: 50px;
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .table th, .table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Submitted Details</h2>
+
+        <table class="table">
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>First Name</td>
+                <td id="firstName"></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td id="lastName"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td id="email"></td>
+            </tr>
+            <tr>
+                <td>Date of Birth</td>
+                <td id="dob"></td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td id="age"></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td id="gender"></td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td id="phoneNumber"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td id="address"></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        document.getElementById('firstName').innerText = getUrlParameter('firstName');
+        document.getElementById('lastName').innerText = getUrlParameter('lastName');
+        document.getElementById('email').innerText = getUrlParameter('email');
+        document.getElementById('dob').innerText = getUrlParameter('dob');
+        document.getElementById('age').innerText = getUrlParameter('age');
+        document.getElementById('gender').innerText = getUrlParameter('gender');
+        document.getElementById('phoneNumber').innerText = getUrlParameter('phoneNumber');
+        document.getElementById('address').innerText = getUrlParameter('address');
+    </script>
+</body>
+</html>
